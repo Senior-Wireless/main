@@ -41,6 +41,7 @@
       color: var(--text);
       background: var(--white);
       line-height: 1.65;
+      overflow-x: hidden;
     }
     img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
@@ -806,6 +807,16 @@
     footer .footer-line + .footer-line { margin-top: 6px; }
 
     /* ── Responsive ───────────────────────────────────────── */
+
+    /* Prevent flex/grid text children from overflowing */
+    .ai-feat > div,
+    .perk > div,
+    .contact-info-card > div,
+    .criteria-list li > div,
+    .role-type .role-label {
+      min-width: 0;
+    }
+
     @media (max-width: 860px) {
       .hero-inner { grid-template-columns: 1fr; gap: 40px; }
       .hero-panel { display: none; }
@@ -829,10 +840,31 @@
       nav { padding: 0 max(16px, env(safe-area-inset-left, 0px)); }
       .nav-links { gap: 10px; }
       .nav-links li:not(:last-child) { display: none; }
-      .section { padding-block: 64px; }
-      .hero { padding-block: 64px 72px; }
+      .section { padding-block: 56px; }
+      .mission-band { padding-block: 48px; }
+      .hero { padding-block: 56px 64px; }
+      .hero h1 { font-size: clamp(1.75rem, 7vw, 2.4rem); }
+      .hero-sub { font-size: 1rem; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .hero-actions .btn-primary,
+      .hero-actions .btn-outline { width: 100%; max-width: 320px; text-align: center; }
       .audience-grid { grid-template-columns: 1fr; }
-      .steps { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr; gap: 32px; }
+      .steps::before { display: none; }
+      .services-tabs { gap: 6px; }
+      .tab-btn { padding: 7px 14px; font-size: 0.82rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: clamp(1.35rem, 5.5vw, 1.75rem); }
+      .section-body { font-size: 0.97rem; }
+      .pricing-grid { gap: 16px; }
+      .trust-strip .inner { gap: 14px; justify-content: flex-start; }
+      .perks-list { gap: 16px; }
+    }
+    @media (max-width: 400px) {
+      .hero-inner { padding-left: 16px; padding-right: 16px; }
+      .inner { padding-left: 16px; padding-right: 16px; }
+      nav { padding: 0 16px; }
+      .nav-brand { font-size: 0.92rem; }
     }
     /* ── Careers ───────────────────────────────────────────── */
     #join-the-team { background: var(--white); }
