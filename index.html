@@ -994,11 +994,256 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
     }
+
+    /* ─── Booking Page ─────────────────────────────────────── */
+    .book-nav {
+      background: var(--navy-dark);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 0 max(24px, env(safe-area-inset-left, 0px));
+      height: 64px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .book-hero {
+      background: var(--blue-grad);
+      padding: 64px max(24px, env(safe-area-inset-left, 0px));
+    }
+    .book-flow { background: var(--cream); }
+
+    /* Step indicator */
+    .book-steps-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      row-gap: 12px;
+    }
+    .bsi-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .bsi-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--cream-dark);
+      color: var(--gray);
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .bsi-step.active .bsi-num {
+      background: var(--orange);
+      color: var(--white);
+    }
+    .bsi-step.done .bsi-num {
+      background: #22c55e;
+      color: var(--white);
+    }
+    .bsi-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gray);
+      white-space: nowrap;
+    }
+    .bsi-step.active .bsi-label { color: var(--orange); }
+    .bsi-connector {
+      flex: 1;
+      min-width: 32px;
+      max-width: 80px;
+      height: 2px;
+      background: var(--cream-dark);
+      margin-bottom: 22px;
+    }
+
+    /* Step panels */
+    .book-step-title {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .book-step-sub {
+      color: var(--gray);
+      max-width: 600px;
+      margin-bottom: 32px;
+    }
+
+    /* Service cards */
+    .service-cards { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+    .service-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      background: var(--white);
+      border: 2px solid var(--cream-dark);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      cursor: pointer;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      position: relative;
+    }
+    .service-card input[type="radio"] { display: none; }
+    .service-card:hover { border-color: var(--orange); }
+    .service-card.selected {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(0,112,243,0.12);
+    }
+    .sc-icon { font-size: 2rem; flex-shrink: 0; margin-top: 2px; }
+    .sc-body { flex: 1; min-width: 0; }
+    .sc-name { font-weight: 800; font-size: 1.05rem; color: var(--text); margin-bottom: 4px; }
+    .sc-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.5; margin-bottom: 10px; }
+    .sc-meta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; font-size: 0.85rem; }
+    .sc-duration { color: var(--gray); }
+    .sc-price { font-weight: 800; color: var(--orange); }
+    .sc-deposit { font-weight: 600; color: var(--gray); }
+    .sc-check {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: white;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      opacity: 0;
+      transition: opacity 0.18s;
+      margin-top: 2px;
+    }
+    .service-card.selected .sc-check { opacity: 1; }
+
+    /* Square embed */
+    .square-embed-wrap { margin-bottom: 32px; border-radius: var(--radius); overflow: hidden; }
+    .square-placeholder {
+      background: var(--white);
+      border: 2px dashed var(--cream-dark);
+      border-radius: var(--radius);
+      padding: 40px;
+      text-align: center;
+    }
+    .sq-ph-icon { font-size: 3rem; margin-bottom: 12px; }
+    .sq-ph-title { font-size: 1.3rem; font-weight: 900; color: var(--text); margin-bottom: 10px; }
+    .sq-ph-text { color: var(--gray); margin-bottom: 20px; line-height: 1.6; }
+    .sq-ph-steps {
+      text-align: left;
+      max-width: 440px;
+      margin: 0 auto;
+      color: var(--text);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      padding-left: 20px;
+    }
+
+    /* Booking form */
+    .book-form { margin-bottom: 32px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-weight: 700; font-size: 0.9rem; color: var(--text); }
+    .form-group input, .form-group textarea {
+      border: 1.5px solid var(--cream-dark);
+      border-radius: var(--radius-sm);
+      padding: 11px 14px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.15s;
+      width: 100%;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(0,112,243,0.1);
+    }
+    .form-group textarea { resize: vertical; }
+
+    /* Summary */
+    .book-summary {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .bs-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--cream-dark);
+      gap: 16px;
+    }
+    .bs-label { color: var(--gray); font-size: 0.9rem; }
+    .bs-val { font-weight: 700; text-align: right; min-width: 0; }
+    .bs-highlight { background: rgba(0,112,243,0.05); margin: 0 -24px; padding: 14px 24px; border: none; border-radius: 0 0 var(--radius) var(--radius); }
+    .bs-highlight .bs-label { color: var(--orange); font-weight: 700; }
+    .bs-highlight .bs-val { color: var(--orange); font-size: 1.2rem; }
+
+    /* Deposit notice */
+    .deposit-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .dn-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+    /* Pay button */
+    .btn-pay {
+      padding: 16px 48px;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* Nav button in main nav */
+    .nav-book-btn {
+      background: var(--orange);
+      color: var(--white) !important;
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: background 0.18s, transform 0.18s;
+    }
+    .nav-book-btn:hover { background: var(--orange-light) !important; transform: translateY(-1px); }
+
+    /* Book nav row */
+    .book-nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+      gap: 16px;
+    }
+
+    @media (max-width: 560px) {
+      .bsi-connector { min-width: 16px; }
+      .bsi-label { font-size: 0.68rem; }
+      .service-card { flex-direction: column; gap: 12px; }
+      .square-placeholder { padding: 24px 16px; }
+      .bs-row { flex-direction: column; gap: 4px; }
+      .bs-val { text-align: left; }
+    }
+
   </style>
 </head>
 <body>
 
 <!-- ── Navigation ─────────────────────────────────────────── -->
+<div id="page-home">
 <nav>
   <div class="nav-logo">
     <img class="nav-logo-icon" src="data:image/png;base64,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" alt="TechSavvy Solutions" />
@@ -1011,6 +1256,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#join-the-team">Join Us</a></li>
     <li><a href="#contact" class="nav-cta">Get Help</a></li>
+    <li><a href="#" class="nav-book-btn" id="nav-book-link" onclick="showPage('book');return false;">Book Now</a></li>
   </ul>
 </nav>
 
@@ -1659,6 +1905,75 @@
     });
   }
 
+
+  // ── Page switching ────────────────────────────────────────
+  function showPage(page) {
+    document.getElementById('page-home').style.display = page === 'home' ? '' : 'none';
+    document.getElementById('page-book').style.display = page === 'book' ? '' : 'none';
+    window.scrollTo(0, 0);
+    if (page === 'book') resetBooking();
+  }
+
+  function resetBooking() {
+    goStep(1);
+    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+    document.getElementById('step1-next').disabled = true;
+    selectedService = null;
+  }
+
+  let selectedService = null;
+
+  // Service card selection
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      card.querySelector('input[type="radio"]').checked = true;
+      selectedService = {
+        name: card.dataset.name,
+        price: card.dataset.price,
+        deposit: card.dataset.deposit
+      };
+      document.getElementById('step1-next').disabled = false;
+    });
+  });
+
+  function goStep(n) {
+    // Update indicator
+    document.querySelectorAll('.bsi-step').forEach(s => {
+      const sn = parseInt(s.dataset.step);
+      s.classList.toggle('active', sn === n);
+      s.classList.toggle('done', sn < n);
+    });
+    // Show/hide panels
+    [1,2,3,4].forEach(i => {
+      const el = document.getElementById('bstep-' + i);
+      if (el) el.style.display = i === n ? '' : 'none';
+    });
+    // If going to step 4, populate summary
+    if (n === 4) populateSummary();
+    window.scrollTo(0, 0);
+  }
+
+  function populateSummary() {
+    if (selectedService) {
+      document.getElementById('bs-service').textContent = selectedService.name;
+      document.getElementById('bs-total').textContent = '$' + selectedService.price;
+      document.getElementById('bs-deposit').textContent = '$' + selectedService.deposit;
+    }
+    const first = document.getElementById('bf-first').value;
+    const last = document.getElementById('bf-last').value;
+    if (first || last) {
+      document.getElementById('bs-name').textContent = (first + ' ' + last).trim();
+    }
+  }
+
+  function handlePayClick() {
+    // Placeholder — replace with Square payment link or Web Payments SDK call
+    alert('Square Appointments is not yet connected. Once your Square account is set up, this button will launch the secure checkout.');
+  }
+
+
   // Active nav highlighting
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
@@ -1675,5 +1990,264 @@
   }, { threshold: 0.35 });
   sections.forEach(s => obs.observe(s));
 </script>
+</div><!-- /page-home -->
+
+<div id="page-book" style="display:none;">
+
+<!-- ── Booking Nav ─────────────────────────────────────────── -->
+<nav class="book-nav">
+  <div class="nav-logo" style="cursor:pointer;" onclick="showPage('home')">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="14" cy="14" r="14" fill="var(--orange)"/>
+      <path d="M18 14H10M10 14L13 11M10 14L13 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span style="color:var(--white);font-weight:700;font-size:0.95rem;">Back to Home</span>
+  </div>
+  <div class="nav-brand" style="position:absolute;left:50%;transform:translateX(-50%);font-size:1rem;">TechSavvy <span>Solutions</span></div>
+</nav>
+
+<!-- ── Booking Hero ─────────────────────────────────────────── -->
+<section class="book-hero">
+  <div class="inner" style="max-width:740px;margin:0 auto;text-align:center;">
+    <div class="hero-tag" style="justify-content:center;margin-bottom:16px;">
+      <span class="hero-tag-dot"></span>Available Mon – Sat · North Dallas Area
+    </div>
+    <h1 style="font-size:clamp(2rem,5vw,3rem);font-weight:900;color:var(--white);line-height:1.15;margin-bottom:16px;">
+      Book Your <em>Tech Support</em> Session
+    </h1>
+    <p style="color:rgba(255,255,255,0.75);font-size:1.05rem;max-width:520px;margin:0 auto;">
+      Choose your service, pick a time that works, and secure your spot with a 50% deposit. We'll handle the rest.
+    </p>
+  </div>
+</section>
+
+<!-- ── Booking Flow ─────────────────────────────────────────── -->
+<section class="book-flow section">
+  <div class="inner" style="max-width:860px;margin:0 auto;">
+
+    <!-- Step indicator -->
+    <div class="book-steps-indicator">
+      <div class="bsi-step active" data-step="1">
+        <div class="bsi-num">1</div>
+        <div class="bsi-label">Choose Service</div>
+      </div>
+      <div class="bsi-connector"></div>
+      <div class="bsi-step" data-step="2">
+        <div class="bsi-num">2</div>
+        <div class="bsi-label">Pick a Time</div>
+      </div>
+      <div class="bsi-connector"></div>
+      <div class="bsi-step" data-step="3">
+        <div class="bsi-num">3</div>
+        <div class="bsi-label">Your Info</div>
+      </div>
+      <div class="bsi-connector"></div>
+      <div class="bsi-step" data-step="4">
+        <div class="bsi-num">4</div>
+        <div class="bsi-label">Confirm &amp; Pay</div>
+      </div>
+    </div>
+
+    <!-- STEP 1: Service selection -->
+    <div class="book-step-panel" id="bstep-1">
+      <h2 class="book-step-title">What kind of support do you need?</h2>
+      <p class="book-step-sub">Select the option that best fits your situation. Not sure? Pick the closest match — we'll dial in the details when we connect.</p>
+
+      <div class="service-cards">
+
+        <label class="service-card" data-price="75" data-deposit="38" data-name="Phone &amp; Video Support">
+          <input type="radio" name="service" value="phone-video" />
+          <div class="sc-icon">📱</div>
+          <div class="sc-body">
+            <div class="sc-name">Phone &amp; Video Support</div>
+            <div class="sc-desc">We walk you through it step by step over a call or video chat. Perfect for software questions, account setup, or troubleshooting from anywhere.</div>
+            <div class="sc-meta">
+              <span class="sc-duration">⏱ 45–60 min</span>
+              <span class="sc-price">$75 <span class="sc-deposit">· $38 deposit</span></span>
+            </div>
+          </div>
+          <div class="sc-check">✓</div>
+        </label>
+
+        <label class="service-card" data-price="125" data-deposit="63" data-name="In-Home Visit">
+          <input type="radio" name="service" value="in-home" />
+          <div class="sc-icon">🏠</div>
+          <div class="sc-body">
+            <div class="sc-name">In-Home Visit</div>
+            <div class="sc-desc">One of our techs comes to you. We set up devices, fix problems hands-on, and make sure everything works before we leave. Available in Plano, Frisco, McKinney &amp; Allen.</div>
+            <div class="sc-meta">
+              <span class="sc-duration">⏱ 60–90 min</span>
+              <span class="sc-price">$125 <span class="sc-deposit">· $63 deposit</span></span>
+            </div>
+          </div>
+          <div class="sc-check">✓</div>
+        </label>
+
+        <label class="service-card" data-price="150" data-deposit="75" data-name="School or Organization Setup">
+          <input type="radio" name="service" value="org-setup" />
+          <div class="sc-icon">🏫</div>
+          <div class="sc-body">
+            <div class="sc-name">School or Organization Setup</div>
+            <div class="sc-desc">Tech setup and training for K–12 schools, senior living communities, or community organizations. Includes device configuration, network help, and staff orientation.</div>
+            <div class="sc-meta">
+              <span class="sc-duration">⏱ 2–4 hrs · custom quote available</span>
+              <span class="sc-price">$150 <span class="sc-deposit">· $75 deposit</span></span>
+            </div>
+          </div>
+          <div class="sc-check">✓</div>
+        </label>
+
+      </div>
+
+      <div class="book-nav-row">
+        <div></div>
+        <button class="btn-primary" id="step1-next" disabled onclick="goStep(2)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Date & time via Square embed -->
+    <div class="book-step-panel" id="bstep-2" style="display:none;">
+      <h2 class="book-step-title">Pick a date and time</h2>
+      <p class="book-step-sub">All times shown in Central Time. We're available Monday through Saturday, 9 AM – 6 PM.</p>
+
+      <div class="square-embed-wrap">
+        <!-- SQUARE APPOINTMENTS EMBED -->
+        <!-- Once your Square Appointments booking page is set up, replace this
+             placeholder with your Square embed code. It looks like:
+             <iframe src="https://square.site/book/XXXXXXX/techsavvy-solutions"
+               width="100%" height="600" frameborder="0"></iframe>
+        -->
+        <div class="square-placeholder">
+          <div class="sq-ph-icon">📅</div>
+          <div class="sq-ph-title">Square Appointments</div>
+          <div class="sq-ph-text">
+            Your live booking calendar will appear here once your Square Appointments account is connected.<br/><br/>
+            <strong>Setup takes about 10 minutes:</strong>
+          </div>
+          <ol class="sq-ph-steps">
+            <li>Go to <strong>squareup.com/appointments</strong> and create a free account</li>
+            <li>Add your three services with the prices above</li>
+            <li>Set your availability (Mon–Sat, 9 AM–6 PM)</li>
+            <li>Enable deposit collection (50%) under <em>Payments → Deposits</em></li>
+            <li>Copy your booking page embed code and paste it here</li>
+          </ol>
+          <a href="https://squareup.com/us/en/appointments" target="_blank" class="btn-primary" style="margin-top:24px;display:inline-block;">Set Up Square Appointments →</a>
+        </div>
+      </div>
+
+      <div class="book-nav-row">
+        <button class="btn-outline" onclick="goStep(1)">← Back</button>
+        <button class="btn-primary" onclick="goStep(3)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Contact info -->
+    <div class="book-step-panel" id="bstep-3" style="display:none;">
+      <h2 class="book-step-title">Your information</h2>
+      <p class="book-step-sub">We use this to send your confirmation and reach you before your session.</p>
+
+      <form class="book-form" id="book-form" onsubmit="return false;">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bf-first">First name</label>
+            <input type="text" id="bf-first" placeholder="Diane" required />
+          </div>
+          <div class="form-group">
+            <label for="bf-last">Last name</label>
+            <input type="text" id="bf-last" placeholder="Johnson" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bf-phone">Phone number</label>
+            <input type="tel" id="bf-phone" placeholder="(214) 555-0100" required />
+          </div>
+          <div class="form-group">
+            <label for="bf-email">Email address</label>
+            <input type="email" id="bf-email" placeholder="diane@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="bf-notes">Anything we should know? <span style="font-weight:400;color:var(--gray)">(optional)</span></label>
+          <textarea id="bf-notes" rows="3" placeholder="e.g. I need help setting up my new iPad and connecting it to my printer…"></textarea>
+        </div>
+      </form>
+
+      <div class="book-nav-row">
+        <button class="btn-outline" onclick="goStep(2)">← Back</button>
+        <button class="btn-primary" onclick="goStep(4)">Review Booking →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Summary + payment -->
+    <div class="book-step-panel" id="bstep-4" style="display:none;">
+      <h2 class="book-step-title">Review &amp; confirm</h2>
+      <p class="book-step-sub">Everything look right? A 50% deposit is collected now to secure your spot. The remainder is due after your session.</p>
+
+      <div class="book-summary">
+        <div class="bs-row">
+          <span class="bs-label">Service</span>
+          <span class="bs-val" id="bs-service">—</span>
+        </div>
+        <div class="bs-row">
+          <span class="bs-label">Date &amp; Time</span>
+          <span class="bs-val">Selected via calendar</span>
+        </div>
+        <div class="bs-row">
+          <span class="bs-label">Name</span>
+          <span class="bs-val" id="bs-name">—</span>
+        </div>
+        <div class="bs-row">
+          <span class="bs-label">Session total</span>
+          <span class="bs-val" id="bs-total">—</span>
+        </div>
+        <div class="bs-row bs-highlight">
+          <span class="bs-label">Deposit due today (50%)</span>
+          <span class="bs-val" id="bs-deposit">—</span>
+        </div>
+        <div class="bs-row" style="font-size:0.85rem;color:var(--gray);border:none;padding-top:4px;">
+          <span>Remaining balance due after service is complete.</span>
+        </div>
+      </div>
+
+      <div class="deposit-notice">
+        <span class="dn-icon">🔒</span>
+        <div>
+          <strong>Secure payment via Square</strong><br/>
+          <span>Your deposit is processed through Square's encrypted checkout. TechSavvy Solutions never stores card details.</span>
+        </div>
+      </div>
+
+      <!-- Square payment button placeholder -->
+      <div style="margin-top:28px;text-align:center;">
+        <button class="btn-primary btn-pay" id="pay-btn" onclick="handlePayClick()">
+          Pay Deposit &amp; Confirm Booking
+        </button>
+        <p style="font-size:0.82rem;color:var(--gray);margin-top:12px;">
+          By confirming, you agree to our <a href="#" style="color:var(--orange);text-decoration:underline;">cancellation policy</a>. Deposits are refundable with 24+ hrs notice.
+        </p>
+      </div>
+
+      <div class="book-nav-row" style="margin-top:16px;">
+        <button class="btn-outline" onclick="goStep(3)">← Back</button>
+        <div></div>
+      </div>
+    </div>
+
+    <!-- Confirmation screen -->
+    <div class="book-step-panel" id="bstep-confirm" style="display:none;">
+      <div style="text-align:center;padding:48px 0;">
+        <div style="font-size:3.5rem;margin-bottom:16px;">🎉</div>
+        <h2 style="font-size:1.8rem;font-weight:900;color:var(--text);margin-bottom:12px;">You're all set!</h2>
+        <p style="color:var(--gray);max-width:420px;margin:0 auto 28px;">Your deposit has been received and your session is confirmed. Check your email for a confirmation with all the details.</p>
+        <button class="btn-primary" onclick="showPage('home')">Back to Home</button>
+      </div>
+    </div>
+
+  </div><!-- /inner -->
+</section><!-- /book-flow -->
+
+</div><!-- /page-book -->
+
 </body>
 </html>
